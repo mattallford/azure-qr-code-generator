@@ -43,4 +43,4 @@ jobs:
 
     - name: Deploy to Azure Storage
       run: |
-        az storage blob upload-batch -d '$web' --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }} -s qr-code-generator/build
+        az storage blob upload-batch -d '$web' --account-name maqrcgstg001 -s qr-code-generator/build
