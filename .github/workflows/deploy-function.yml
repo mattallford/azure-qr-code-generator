@@ -33,6 +33,11 @@ jobs:
         cd qrCodeGenerator
         dotnet publish -c Release -o publish
 
+    - name: Zip the publish directory
+      run: |
+        cd qrCodeGenerator/publish
+        zip -r ../publish.zip *
+
     - name: Authenticate to Azure
       id: auth
       uses: azure/login@v1
@@ -46,4 +51,4 @@ jobs:
         az functionapp deployment source config-zip \
           --resource-group rg-qr-code-generator \
           --name maqrcg-func-app-001 \
-          --src-path qrCodeGenerator/publish
+          --src-path qrCodeGenerator/publish.zip
