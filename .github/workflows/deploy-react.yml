@@ -17,6 +17,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        path: .
 
     - name: Set up Node.js
       uses: actions/setup-node@v2
@@ -24,14 +26,12 @@ jobs:
         node-version: '16'
 
     - name: Install dependencies
-      run: |
-        cd qr-code-generator
-        npm install
+      working-directory: ./qr-code-generator
+      run: npm install
 
     - name: Build the React app
-      run: |
-        cd qr-code-generator
-        npm run build
+      working-directory: ./qr-code-generator
+      run: npm run build        
 
     - name: Authenticate to Azure
       id: auth
